@@ -21,3 +21,4 @@ function faceReducer(state = INITIAL_STATE, action) {
 }
 
 const store = Redux.createStore(faceReducer);
+
