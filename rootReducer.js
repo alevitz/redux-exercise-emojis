@@ -18,24 +18,10 @@ function faceReducer(state = INITIAL_STATE, action) {
     case "Confused":
       return { ...state, face: "ಠ_ರೃ)", color: "gray" };
 
-    case "Random-Mood":
-      const randNum = Math.random();
-      console.log(randNum);
-      if (randNum <= .25) {
-        return { ...state, face: "(＾ω＾)", color: "yellow" };
-      } else if (randNum <= .5) {
-        return { ...state, face: "●︿●", color: "blue" };
-      } else if (randNum <= .75) {
-        return { ...state, face: "(╬ಠ益ಠ)", color: "red" };
-      } else {
-        return { ...state, face: "ಠ_ರೃ)", color: "gray" };
-      }
     default:
       return state;
   }
 }
-
-
 
 const store = Redux.createStore(faceReducer);
 

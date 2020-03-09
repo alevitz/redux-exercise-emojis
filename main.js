@@ -1,6 +1,5 @@
 
 $(function () {
-  const $faceHolder = $("#emoji-container");
 
   $("#happy").on("click", function () {
     store.dispatch({ type: "Happy" });
@@ -19,14 +18,24 @@ $(function () {
   });
 
   $("#random-mood").on("click", function () {
-    store.dispatch({ type: "Random-Mood" });
+    const randNum = Math.random();
+    let actionType;
+    if (randNum <= .25) {
+      actionType = "Happy";
+    } else if (randNum <= .5) {
+      actionType = "Sad";
+    } else if (randNum <= .75) {
+      actionType = "Angry";
+    } else {
+      actionType = "Confused";
+    }
+    store.dispatch({ type: actionType });
   });
 
-
-  store.subscribe(()=> {
-    const currentFace = store.getState().face;
-    const currentColor = store.getState().color;
-      $faceHolder.empty().append(currentFace);
-      $("#body").css("background-color", currentColor);
+  store.subscribe(() => {
+    const $faceHolder = $("#emoji-container");
+    const { face, color } = store.getState();
+    $faceHolder.empty().append(face);
+    $("#body").css("background-color", color);
   })
 })
